@@ -1,0 +1,33 @@
+server:
+  port: 9093
+  
+  
+  eureka:
+  serviceUrl:
+      defaultZone:http//localhost:8761/eureka/
+
+spring:
+  application:
+    name: user-service
+    
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://localhost:5432/eCommerce_user
+    username: postgres
+    password: 12345
+    
+  jpa:
+    generate-ddl: true
+    show-sql: true 
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+       dialect: org.hibernate.dialect.PostgreSQLDialect
+     
+    
+
+
+
+    
+    
