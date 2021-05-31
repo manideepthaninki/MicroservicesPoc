@@ -1,0 +1,9 @@
+server:
+  port: 8761
+  
+ureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    serviceUrl:
+      defaultzone: http//localhost:8761/eureka/
