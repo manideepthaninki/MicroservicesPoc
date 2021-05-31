@@ -33,24 +33,15 @@ public class ProductServiceImpl implements ProductService {
 
 		Optional<Product> dbContent = productRepo.findById(productId);
 		if (dbContent.isPresent()) {
-			System.out.println("4");
 			Product product=dbContent.get();
 
 			Reviews review = new Reviews();
-			System.out.println("5");
 			review.setComment(input.getComment());
-			System.out.println("6");
 			review.setRating(input.getRating());
 			review.setReviewed(input.getReviewed());
-			System.out.println("7");
 			review.setProduct(product);
-			System.out.println("8");
 			product.setReviews(Arrays.asList(review));
-			System.out.println("9");
-			//System.out.println(product);
-
 			productRepo.save(product);
-			System.out.println("5");
 			return "Review saved Successfully";
 		} else
 			throw new Exception();
