@@ -1,0 +1,23 @@
+server:
+  port: 9091
+  
+spring:
+  application:
+    name: product-catlog
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://localhost:5432/eCommerce_product
+    username: postgres
+    password: 12345
+  jpa:
+    generate-ddl: true
+    show-sql: true 
+    hibernate:
+      ddl-auto: update
+    
+eureka:
+  serviceUrl:
+      defaultZone:http//localhost:8761/eureka/
+
+  
+    
