@@ -42,7 +42,7 @@ public class UserController {
 
 
 
-@PostMapping(path = "addUser",consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
+@PostMapping(path = "addUser",produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> addUser(@RequestBody User user){
 		try {
 		

@@ -6,14 +6,12 @@ spring:
     name: zuul-gateway1
 
 zuul:
-  #prefix: /api
   routes:
    product-catlog:
      path: /**
      service-id: product-catlog  
    user-service:
      path: /**
-     #url: http://localhost:9092
      service-id: user-service
      
 eureka:
