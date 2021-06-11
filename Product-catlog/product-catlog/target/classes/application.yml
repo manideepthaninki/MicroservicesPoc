@@ -1,9 +1,11 @@
 server:
   port: 9091
+logging:
+  file:     path:  D:/logFiles/productservicelogs.log
   
 spring:
   application:
-    name: product-catlog
+    name: product-service
   datasource:
     platform: postgres
     url: jdbc:postgresql://localhost:5432/eCommerce_product
@@ -19,5 +21,6 @@ eureka:
   serviceUrl:
       defaultZone:http//localhost:8761/eureka/
 
-  
+springdoc:
+  packagesToScan: com.mani.eCommerce.productcatlog
     
