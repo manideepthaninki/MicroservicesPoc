@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.mani.eCommerce.usermanagement.entity.Address;
 import com.mani.eCommerce.usermanagement.entity.User;
+import com.mani.eCommerce.usermanagement.entity.User1;
+import com.mani.eCommerce.usermanagement.repository.User1Repo;
 import com.mani.eCommerce.usermanagement.repository.UserRepo;
 
 @Service
@@ -16,6 +18,10 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
      private UserRepo userRepo;
+
+
+	@Autowired
+     private User1Repo user1Repo;
 	@Override
 	public User addUser(User input) throws SQLException {
 
@@ -48,10 +54,31 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User getUser(Long id) throws Exception {
 		Optional<User> user=userRepo.findById(id);
-		if(user.isPresent()) {
+		user.orElseThrow(()->new Exception("No user Found"));
+		
 			return user.get();
-		}else
-		throw new Exception();
+		
+	}
+
+	public User1 saveUser1(User1 user) throws Exception {
+
+		
+		User1 dbObj=user1Repo.save(user);
+		
+		if(dbObj.getId()!=0) {
+			return dbObj;
+		}
+		else throw new Exception("Failed to save");
+		
+		
+	}
+
+	public List<User1> allUser1() throws Exception {
+
+		Optional<List<User1>> users=Optional.of(user1Repo.findAll());
+		users.orElseThrow(()-> new Exception("No Users Found"));
+		 return users.get();
+			
 	}
 
 

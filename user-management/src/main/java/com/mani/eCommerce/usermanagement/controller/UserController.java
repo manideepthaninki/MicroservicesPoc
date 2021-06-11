@@ -13,6 +13,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,11 +24,13 @@ import org.springframework.web.client.RestTemplate;
 
 import com.mani.eCommerce.usermanagement.entity.Reviews;
 import com.mani.eCommerce.usermanagement.entity.User;
+import com.mani.eCommerce.usermanagement.entity.User1;
 import com.mani.eCommerce.usermanagement.service.UserServiceImpl;
 
 
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000/")
 @RequestMapping("user/")
 public class UserController {
   
@@ -52,6 +55,32 @@ public class UserController {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 	}
+
+@PostMapping(path = "saveUser",produces = MediaType.APPLICATION_JSON_VALUE)
+public ResponseEntity<?> addUser(@RequestBody User1 user){
+	try {
+		if(user.getPhone()!=null) {
+		return new ResponseEntity<>(userServiceImpl.saveUser1(user), HttpStatus.OK);
+		}else throw new Exception("PhoneNumber Required");
+	}
+	catch (Exception e) {
+		return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+	}
+}
+
+@GetMapping(path="allUsers")
+public ResponseEntity<?> allUsers(){
+
+	try {
+		return new ResponseEntity<>(userServiceImpl.allUser1(), HttpStatus.OK);
+	} catch (Exception e) {
+		return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+
+	}
+	
+	
+}
+
 
 @GetMapping(path="getUser/{id}",consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<?> getUser(@PathVariable String id) {

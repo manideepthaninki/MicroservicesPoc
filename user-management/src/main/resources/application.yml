@@ -1,6 +1,8 @@
 server:
   port: 9093
   
+logging:
+  file: D:/logFiles/userserviceslogs.log
   
   eureka:
   serviceUrl:
@@ -25,7 +27,8 @@ spring:
       hibernate:
        dialect: org.hibernate.dialect.PostgreSQLDialect
      
-    
+springdoc:
+  packagesToScan: com.mani.eCommerce.usermanagement  
 
 
 
